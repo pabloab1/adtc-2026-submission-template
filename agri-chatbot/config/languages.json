@@ -1,0 +1,9 @@
+{
+  "_comment": "Edit this file to add, remove, or swap languages. 'default_language' is the fallback used when an answer isn't yet translated into the language the user asked in. 'active_languages' controls which languages the retrieval system indexes and searches. Yoruba ('yo') was intentionally disabled for this submission (English-only scope); its questions and drafted answers remain in data/qa_dataset.json, so re-enabling it — or adding 'ha' Hausa, 'ig' Igbo, 'fr' French, etc. — is just a matter of adding the code + display name back here, with no code changes required elsewhere.",
+
+  "default_language": "en",
+
+  "active_languages": {
+    "en": "English"
+  }
+}

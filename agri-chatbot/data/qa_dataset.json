@@ -1,0 +1,1145 @@
+{
+  "_comment": "Each pair holds a 'questions' object and an 'answers' object keyed by language code. To add a language to an existing pair, just add a new key (e.g. 'ha') to both objects — no code changes needed. To add a new pair, copy the shape of any entry below and give it a unique 'id'. 'answers' only needs 'en' filled in for now; other languages are null until translated, and the chatbot falls back to config/languages.json's default_language when a translation is missing.",
+  "pairs": [
+    {
+      "id": 1,
+      "topic": "cassava_planting_timing",
+      "source": "IITA cassava agronomy training manual",
+      "questions": {
+        "en": "When should I plant cassava cuttings?",
+        "yo": "Nígbà wo ni mo yẹ kí n gbin igi kasada?"
+      },
+      "answers": {
+        "en": "Plant healthy stem cuttings from mature cassava plants, either vertically, at an angle, or horizontally depending on soil moisture.",
+        "yo": null
+      }
+    },
+    {
+      "id": 2,
+      "topic": "fall_armyworm_control",
+      "source": "IITA Guide to Maize Production in Northern Nigeria",
+      "questions": {
+        "en": "How do I control Fall Armyworm in my maize?",
+        "yo": "Báwo ni mo ṣe lè ṣakoso Fall Armyworm nínú àgbàdo mi?"
+      },
+      "answers": {
+        "en": "Fall Armyworm requires frequent insecticide application, sometimes using multiple chemical types, since it's difficult to control once established.",
+        "yo": null
+      }
+    },
+    {
+      "id": 3,
+      "topic": "cassava_weed_control_timing",
+      "source": "IITA cassava agronomy research guide No. 60",
+      "questions": {
+        "en": "Why is weed control important in the first months after planting cassava?",
+        "yo": "Kí nìdí tí ìṣàkóso èpò fi ṣe pàtàkì ní oṣù àkọ́kọ́ lẹ́yìn tí a bá gbin kasada?"
+      },
+      "answers": {
+        "en": "Cassava sprouts develop slowly, making the crop highly vulnerable to weed competition in the first 3-4 months after planting.",
+        "yo": null
+      }
+    },
+    {
+      "id": 4,
+      "topic": "cassava_harvest_timing",
+      "source": "IITA cassava agronomy research guide No. 60",
+      "questions": {
+        "en": "When can I harvest cassava?",
+        "yo": "Nígbà wo ni mo lè kórè kasada?"
+      },
+      "answers": {
+        "en": "Cassava can be harvested from 7 months after planting, though most varieties reach optimum weight and starch content at 18 months.",
+        "yo": null
+      }
+    },
+    {
+      "id": 5,
+      "topic": "cassava_soil_requirements",
+      "source": "IITA cassava agronomy research guide No. 60",
+      "questions": {
+        "en": "What soil is best for growing cassava?",
+        "yo": "Ilẹ̀ wo ni ó dára jùlọ fún gbígbin kasada?"
+      },
+      "answers": {
+        "en": "Cassava grows best in friable, light-textured, well-drained soil with sufficient moisture and balanced nutrients.",
+        "yo": null
+      }
+    },
+    {
+      "id": 6,
+      "topic": "cassava_zero_input_method",
+      "source": "IITA comprehensive training module on competitive cassava production",
+      "questions": {
+        "en": "Can I grow cassava without fertilizer?",
+        "yo": "Ṣé mo lè gbin kasada láìlo ajílẹ̀?"
+      },
+      "answers": {
+        "en": "Yes, cassava can be grown using a zero-input method without fertilizers or herbicides, relying on good land preparation, the right variety, and proper spacing.",
+        "yo": null
+      }
+    },
+    {
+      "id": 7,
+      "topic": "cassava_intercropping",
+      "source": "IITA cassava agronomy research guide No. 60",
+      "questions": {
+        "en": "What crops are commonly intercropped with cassava?",
+        "yo": "Ohun ọ̀gbìn wo ni a sábà máa ń gbìn pẹ̀lú kasada?"
+      },
+      "answers": {
+        "en": "Farmers commonly intercrop cassava with maize, melon, and other crops.",
+        "yo": null
+      }
+    },
+    {
+      "id": 8,
+      "topic": "extension_helpline",
+      "source": "NAERLS National Farmers Helpline",
+      "questions": {
+        "en": "How do I get help from an agricultural extension officer in Nigeria?",
+        "yo": "Báwo ni mo ṣe lè rí ìrànlọ́wọ́ lọ́wọ́ òṣìṣẹ́ ìtẹ́ìwájú iṣẹ́ àgbẹ̀ ní Nàìjíríà?"
+      },
+      "answers": {
+        "en": "Farmers can reach NAERLS through the National Farmers Helpline, a call center offering real-time agricultural advisory by phone and SMS.",
+        "yo": null
+      }
+    },
+    {
+      "id": 9,
+      "topic": "maize_cassava_spacing",
+      "source": "CGSpace: Growing Maize with Cassava in Nigeria",
+      "questions": {
+        "en": "What is the recommended spacing for planting maize with cassava?",
+        "yo": "Kí ni àyè tí a gbà níyànjú fún gbígbin àgbàdo pẹ̀lú kasada?"
+      },
+      "answers": {
+        "en": "For maize/cassava intercropping, cassava is typically planted at 90 x 90 cm spacing, giving about 12,300 plants per hectare.",
+        "yo": null
+      }
+    },
+    {
+      "id": 10,
+      "topic": "maize_storage",
+      "source": "CGSpace: Growing Maize with Cassava in Nigeria",
+      "questions": {
+        "en": "How do I store harvested maize to prevent pest damage?",
+        "yo": "Báwo ni mo ṣe lè tọ́jú àgbàdo tí mo kórè kí kòkòrò má bàa bà á jẹ́?"
+      },
+      "answers": {
+        "en": "Dry maize grains should be stored in an air-tight container or silo and protected with appropriate fumigant tablets to prevent pest damage.",
+        "yo": null
+      }
+    },
+    {
+      "id": 11,
+      "topic": "cassava_low_yield_causes",
+      "source": "NAERLS Agricultural Performance Survey",
+      "questions": {
+        "en": "What causes low cassava yields in Nigeria compared to other countries?",
+        "yo": "Kí ni ó ń fa àìtó ìkórè kasada ní Nàìjíríà ní ìfiwéra pẹ̀lú àwọn orílẹ̀-èdè mìíràn?"
+      },
+      "answers": {
+        "en": "Low yields are mainly due to farmers continuing to plant old, diseased planting materials and low adoption of improved, higher-yielding varieties.",
+        "yo": null
+      }
+    },
+    {
+      "id": 12,
+      "topic": "cassava_early_harvest_risk",
+      "source": "IITA comprehensive training module on competitive cassava production",
+      "questions": {
+        "en": "Should I harvest cassava as soon as it looks ready?",
+        "yo": "Ṣé mo yẹ kí n kórè kasada ní kété tí ó bá dàbí ẹni pé ó ti pọ́n?"
+      },
+      "answers": {
+        "en": "No, harvesting too early results in a lower yield, so it's better to wait until the crop reaches proper maturity.",
+        "yo": null
+      }
+    },
+    {
+      "id": 13,
+      "topic": "cassava_harvest_technique",
+      "source": "IITA Facilitator's Guide: Cassava-Based Training",
+      "questions": {
+        "en": "How do I harvest cassava without damaging the roots?",
+        "yo": "Báwo ni mo ṣe lè kórè kasada láìba àwọn gbòǹgbò rẹ̀ jẹ́?"
+      },
+      "answers": {
+        "en": "If the soil is compact, loosen it first without damaging the roots, then separate the roots from the stem using a sharp knife or cutlass, cutting each root near the stem rather than breaking it off by hand.",
+        "yo": null
+      }
+    },
+    {
+      "id": 14,
+      "topic": "fall_armyworm_history",
+      "source": "IITA Guide to Maize Production in Northern Nigeria",
+      "questions": {
+        "en": "When did Fall Armyworm first appear in Nigeria, and how widespread is it now?",
+        "yo": "Nígbà wo ni Fall Armyworm kọ́kọ́ farahàn ní Nàìjíríà, báwo sì ni ó ṣe gbilẹ̀ tó nísinsìnyí?"
+      },
+      "answers": {
+        "en": "Fall Armyworm was first reported in Oyo and Ogun states in 2016 and has since spread to all states in Nigeria, including the FCT.",
+        "yo": null
+      }
+    },
+    {
+      "id": 15,
+      "topic": "cassava_soil_to_avoid",
+      "source": "IITA comprehensive training module on competitive cassava production",
+      "questions": {
+        "en": "What kind of soil should I avoid for cassava farming?",
+        "yo": "Ilẹ̀ wo ni mo yẹ kí n yẹra fún fún ọ̀gbìn kasada?"
+      },
+      "answers": {
+        "en": "Avoid stony, clayey, or water-logged soils, as they are unsuitable for good cassava growth.",
+        "yo": null
+      }
+    },
+    {
+      "id": 16,
+      "topic": "spraying_equipment",
+      "source": "IITA comprehensive training module on competitive cassava production",
+      "questions": {
+        "en": "Can I use a knapsack sprayer for a small cassava farm?",
+        "yo": "Ṣé mo lè lo knapsack sprayer fún oko kasada kékeré kan?"
+      },
+      "answers": {
+        "en": "Yes, a knapsack sprayer is commonly used for spraying, alongside boom sprayers for larger operations.",
+        "yo": null
+      }
+    },
+    {
+      "id": 17,
+      "topic": "mechanical_harvesting_speed",
+      "source": "IITA cassava-based training manual / comprehensive training module",
+      "questions": {
+        "en": "How long can a mechanical harvester take to harvest cassava compared to manual harvesting?",
+        "yo": "Báwo ni ẹ̀rọ ìkórè ṣe ń yára tó láti kórè kasada ní ìfiwéra pẹ̀lú ìkórè ọwọ́?"
+      },
+      "answers": {
+        "en": "A 2-row mechanical harvester can harvest 3-5 hectares of cassava in one day, and it is faster and about 50% cheaper than harvesting by hand.",
+        "yo": null
+      }
+    },
+    {
+      "id": 18,
+      "topic": "commercial_seed_entrepreneur",
+      "source": "BASICS Model for Sustainable Cassava Seed System (IITA/CRS/MEDA)",
+      "questions": {
+        "en": "What is a Commercial Seed Entrepreneur (CSE) in the cassava seed system?",
+        "yo": "Kí ni Onísòwò Irúgbìn Òwò (CSE) nínú ètò irúgbìn kasada?"
+      },
+      "answers": {
+        "en": "A CSE is part of a decentralized network that multiplies and sells Early Generation Seeds of improved cassava varieties to farmers, aiming for a reliable, sustainable seed supply.",
+        "yo": null
+      }
+    },
+    {
+      "id": 19,
+      "topic": "cassava_production_vs_yield_growth",
+      "source": "The Case for Developing a Sustainable Cassava Seed System (IITA et al.)",
+      "questions": {
+        "en": "Why did cassava production increase in Africa between 1970 and 2019 without a matching rise in yield per hectare?",
+        "yo": "Kí nìdí tí iṣẹ́ àgbẹ̀ kasada fi pọ̀ sí ní Áfíríkà láàrin ọdún 1970 sí 2019 láìsí ìlọsíwájú kan náà nínú ìkórè fún hektári?"
+      },
+      "answers": {
+        "en": "Cassava production grew mainly because farmers expanded the area under cultivation, not because yield per hectare improved significantly.",
+        "yo": null
+      }
+    },
+    {
+      "id": 20,
+      "topic": "extension_helpline_coverage",
+      "source": "NAERLS National Farmers Helpline",
+      "questions": {
+        "en": "What does NAERLS's National Farmers Helpline cover, and when is it available?",
+        "yo": "Kí ni Ìlà Ìrànlọ́wọ́ Àgbẹ̀ Orílẹ̀-èdè ti NAERLS bo, kí sì ni àkókò tí ó wà níṣẹ́?"
+      },
+      "answers": {
+        "en": "It covers complaints, enquiries, and feedback on agricultural issues across Nigeria via all major mobile networks, and operates Monday to Friday, 9:00 am to 4:00 pm.",
+        "yo": null
+      }
+    },
+    {
+      "id": 21,
+      "topic": "yam_soil_requirements",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "What soil is best for growing yams?"
+      },
+      "answers": {
+        "en": "Yams grow best on free-draining, sandy, fertile soil after clearing the first fallow, with land prepared into mounds or ridges about 1 metre high."
+      }
+    },
+    {
+      "id": 22,
+      "topic": "yam_sett_treatment",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "How should yam setts be treated before planting?"
+      },
+      "answers": {
+        "en": "The day before planting, cut yam setts should be treated with wood ash or a fungicide such as thiabendazole to prevent soil-borne damage."
+      }
+    },
+    {
+      "id": 23,
+      "topic": "yam_planting_spacing",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "What spacing should I use when planting yam setts?"
+      },
+      "answers": {
+        "en": "Yam setts are typically planted 15-20 cm apart, with the cut face of each sett facing upward."
+      }
+    },
+    {
+      "id": 24,
+      "topic": "yam_staking",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "Do yam plants need staking?"
+      },
+      "answers": {
+        "en": "Yes, yam vines are usually staked using two stakes about 2 metres tall, with each stake supporting a pair of plants braced against neighboring stakes."
+      }
+    },
+    {
+      "id": 25,
+      "topic": "yam_weeding_frequency",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "How often should I weed a yam farm?"
+      },
+      "answers": {
+        "en": "Manual weeding by hoeing is typically done three or four times depending on weed growth, and a 2-3 metre weed-free border should be maintained around the field."
+      }
+    },
+    {
+      "id": 26,
+      "topic": "yam_pests_diseases",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "What pests and diseases commonly affect yam?"
+      },
+      "answers": {
+        "en": "Yam is commonly affected by nematodes such as root-knot nematode and yam nematode, and insects including yam shoot beetle, yam tuber beetle, and crickets; disease-resistant cultivars are generally recommended."
+      }
+    },
+    {
+      "id": 27,
+      "topic": "yam_harvest_timing",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "When should I harvest yams?"
+      },
+      "answers": {
+        "en": "Yams should be harvested before the vines dry out and while the soil is still soft, not once it has become dry and hard."
+      }
+    },
+    {
+      "id": 28,
+      "topic": "yam_yield_expectations",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "What yield can I expect from a well-managed yam farm?"
+      },
+      "answers": {
+        "en": "With good management practices, yields of roughly 10-15 tonnes per hectare for white yam and 16-25 tonnes per hectare for water yam are achievable."
+      }
+    },
+    {
+      "id": 29,
+      "topic": "yam_storage",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "How should harvested yams be stored?"
+      },
+      "answers": {
+        "en": "Harvested yams are typically tied with ropes and kept in rodent-proof storage with a metal base and wire netting; they have a shelf life of about 5 months, and rotten or sprouted tubers should be removed."
+      }
+    },
+    {
+      "id": 30,
+      "topic": "yam_species_common",
+      "source": "Wikipedia: Yam production in Nigeria",
+      "questions": {
+        "en": "Which yam species are most commonly grown in Nigeria?"
+      },
+      "answers": {
+        "en": "The two most common and economically important yam species in Nigeria are white guinea yam (Dioscorea rotundata) and water yam (Dioscorea alata)."
+      }
+    },
+    {
+      "id": 31,
+      "topic": "rice_overview",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What is rice, and where does it come from?"
+      },
+      "answers": {
+        "en": "Rice is a cereal grain, the staple food of over half the world's population, and comes from the grass species Oryza sativa (Asian rice) or Oryza glaberrima (African rice), which was independently domesticated in West Africa about 3,000 years ago."
+      }
+    },
+    {
+      "id": 32,
+      "topic": "rice_planting_method",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Should I plant rice seeds directly or transplant seedlings?"
+      },
+      "answers": {
+        "en": "Direct seeding uses more grain (60-80 kg per hectare) but less labor, while transplanting uses less grain (about 40 kg per hectare) but requires far more labor since seedlings must first be raised in a seedbed."
+      }
+    },
+    {
+      "id": 33,
+      "topic": "rice_water_needs",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "How much water does rice actually need while growing?"
+      },
+      "answers": {
+        "en": "Rice does not grow well if continuously submerged; lowland rice is typically flooded to a few centimetres deep until about a week before harvest, though the \"alternate wetting and drying\" technique uses less water by letting the field partially dry between floodings."
+      }
+    },
+    {
+      "id": 34,
+      "topic": "rice_upland_no_flood",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Can rice be grown without flooding the field?"
+      },
+      "answers": {
+        "en": "Yes, upland rice is grown without flooding in hilly or mountainous areas and is rain-fed like maize, though it depends entirely on adequate rainfall."
+      }
+    },
+    {
+      "id": 35,
+      "topic": "rice_harvest_timing",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "How do I know when rice is ready to harvest?"
+      },
+      "answers": {
+        "en": "Rice is ready to harvest when the grain's moisture content is 20-25%; harvesting involves cutting and stacking the stalks, threshing to separate the grain, and cleaning by winnowing."
+      }
+    },
+    {
+      "id": 36,
+      "topic": "rice_drying_importance",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Why is it important to dry rice quickly after harvest?"
+      },
+      "answers": {
+        "en": "Rice grain must be dried soon after harvest to bring moisture down to a safe level, since undried grain is vulnerable to mould fungi during storage."
+      }
+    },
+    {
+      "id": 37,
+      "topic": "rice_postharvest_loss_nigeria",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "How much of the rice harvest is typically lost after harvesting in Nigeria?"
+      },
+      "answers": {
+        "en": "About a quarter of Nigeria's rice crop is lost after harvest, mainly due to inefficient transportation, storage, and milling."
+      }
+    },
+    {
+      "id": 38,
+      "topic": "rice_storage_method_loss",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Does storage method affect how much rice is lost to spoilage?"
+      },
+      "answers": {
+        "en": "Yes significantly — rice stored in modern metal silos loses as little as 0.2%, compared to 7-13% losses when stored by rural households using traditional methods."
+      }
+    },
+    {
+      "id": 39,
+      "topic": "rice_insect_pests",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What insect pests commonly damage rice?"
+      },
+      "answers": {
+        "en": "Major rice pests include armyworms, rice bugs, stem-borers, cutworms, planthoppers, leafhoppers, mealybugs, crickets, and grasshoppers."
+      }
+    },
+    {
+      "id": 40,
+      "topic": "rice_insecticide_overuse_risk",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Can spraying more insecticide on my rice actually make pest problems worse?"
+      },
+      "answers": {
+        "en": "Yes — over-use of broad-spectrum insecticides can cause resurgence of pests like the brown planthopper by killing beneficial insects that naturally control them; a study found an 87.5% reduction in pesticide use led to an overall drop in pest numbers."
+      }
+    },
+    {
+      "id": 41,
+      "topic": "rice_nitrogen_pest_risk",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Does using more nitrogen fertilizer affect rice pest problems?"
+      },
+      "answers": {
+        "en": "High rates of nitrogen fertilizer application can worsen certain pest outbreaks, such as aphids and brown planthopper populations."
+      }
+    },
+    {
+      "id": 42,
+      "topic": "rice_blast_disease",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What is rice blast, and how serious is it?"
+      },
+      "answers": {
+        "en": "Rice blast, caused by the fungus Magnaporthe grisea, is the most serious disease affecting rice worldwide and is among the ten most important diseases of all crop plants."
+      }
+    },
+    {
+      "id": 43,
+      "topic": "rice_duck_farming",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Are there natural ways to manage rice pests without heavy pesticide use?"
+      },
+      "answers": {
+        "en": "Yes — some farmers raise ducks (and sometimes fish) in their rice paddies; the ducks eat small pests, manure the rice, and help control weeds, while also producing an additional food crop."
+      }
+    },
+    {
+      "id": 44,
+      "topic": "rice_nerica_variety",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What is NERICA rice, and why was it developed?"
+      },
+      "answers": {
+        "en": "NERICA (New Rice for Africa) is a group of high-yield rice cultivars specifically developed to improve food security and reduce poverty in Sub-Saharan Africa."
+      }
+    },
+    {
+      "id": 45,
+      "topic": "rice_flood_tolerant_varieties",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Are there rice varieties that can survive flooding?"
+      },
+      "answers": {
+        "en": "Yes, \"deepwater rice\" varieties tolerate flooding to over 50 cm deep for at least a month, and submergence-tolerant varieties with the Sub1A gene (sometimes called \"scuba rice\") can survive being fully submerged for up to two weeks."
+      }
+    },
+    {
+      "id": 46,
+      "topic": "rice_flood_survival_limit",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "How long can normal rice survive being flooded before it dies?"
+      },
+      "answers": {
+        "en": "Standard rice varieties cannot withstand stagnant flooding for more than about a week, since prolonged submergence blocks the plant's access to sunlight and gas exchange."
+      }
+    },
+    {
+      "id": 47,
+      "topic": "rice_drought_tolerant_varieties",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Are there drought-tolerant rice varieties available to farmers?"
+      },
+      "answers": {
+        "en": "Yes, drought-tolerant varieties such as Sahbhagi Dhan, Sahod Ulan, and Sookha dhan are currently used by farmers in India, the Philippines, and Nepal respectively."
+      }
+    },
+    {
+      "id": 48,
+      "topic": "rice_salt_tolerance",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "Can rice be grown in salty coastal soil?"
+      },
+      "answers": {
+        "en": "It's difficult with standard varieties, since high soil salinity severely affects rice especially in early growth stages, but salt-tolerant hybrid varieties have been developed and are being used in affected coastal areas like Bangladesh."
+      }
+    },
+    {
+      "id": 49,
+      "topic": "rice_cold_temperature_needs",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What temperature does rice need to grow well?"
+      },
+      "answers": {
+        "en": "Rice is sensitive to temperatures below 12°C — sowing should only happen once daily average temperatures are reliably above this, since sustained cold can harm germination and seedling growth and even encourage rice blast disease."
+      }
+    },
+    {
+      "id": 50,
+      "topic": "rice_heat_flower_damage",
+      "source": "Wikipedia: Rice",
+      "questions": {
+        "en": "What happens to rice flowers if it gets too hot?"
+      },
+      "answers": {
+        "en": "Rice cannot produce grain if its flowers experience temperatures of 35°C or more for over an hour, meaning the crop can be lost entirely under sustained extreme heat."
+      }
+    },
+    {
+      "id": 51,
+      "topic": "sorghum_growing_conditions",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What growing conditions does sorghum tolerate well?"
+      },
+      "answers": {
+        "en": "Sorghum is drought- and heat-tolerant, nitrogen-efficient, and can tolerate high altitudes and even toxic soils, making it especially suited to arid and semi-arid regions."
+      }
+    },
+    {
+      "id": 52,
+      "topic": "sorghum_temperature_range",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What temperature range does sorghum need to grow?"
+      },
+      "answers": {
+        "en": "Sorghum's optimum growth temperature range is 12-34°C, and it typically takes around 115-140 days from planting to harvest."
+      }
+    },
+    {
+      "id": 53,
+      "topic": "sorghum_soil_range",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What kind of soil can sorghum grow in?"
+      },
+      "answers": {
+        "en": "Sorghum can grow in a wide range of soils, from heavy clay to sandy soils, tolerating a soil pH range of 5.0 to 8.5."
+      }
+    },
+    {
+      "id": 54,
+      "topic": "sorghum_fertilizer_need",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Does sorghum need fertilizer to grow well?"
+      },
+      "answers": {
+        "en": "Sorghum is usually grown without fertilizer or other inputs by small-holder farmers, though it still needs nitrogen, phosphorus, and potassium like other cereal crops for good growth."
+      }
+    },
+    {
+      "id": 55,
+      "topic": "sorghum_weed_competition",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Does sorghum compete well against weeds?"
+      },
+      "answers": {
+        "en": "Yes, sorghum competes effectively with weeds, especially when planted in narrow rows, and it actively suppresses weeds by producing a natural compound called sorgoleone."
+      }
+    },
+    {
+      "id": 56,
+      "topic": "sorghum_crop_rotation",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Should I rotate sorghum with other crops?"
+      },
+      "answers": {
+        "en": "Yes — sorghum requires a field left fallow for at least two years or rotated with legumes in the previous year, and a diversified 2- to 4-year crop rotation can improve yield and make the crop more resilient."
+      }
+    },
+    {
+      "id": 57,
+      "topic": "sorghum_drought_recovery",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Can sorghum recover after a period of drought?"
+      },
+      "answers": {
+        "en": "Yes, sorghum can recover its growth after experiencing some drought, which is part of why it performs well in dry and unpredictable climates."
+      }
+    },
+    {
+      "id": 58,
+      "topic": "sorghum_insect_pests",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What insect pests threaten sorghum?"
+      },
+      "answers": {
+        "en": "Over 150 insect species can damage sorghum at different growth stages, and stored sorghum grain is particularly vulnerable to the lesser grain borer beetle."
+      }
+    },
+    {
+      "id": 59,
+      "topic": "sorghum_striga",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What is Striga, and why is it a problem for sorghum?"
+      },
+      "answers": {
+        "en": "Striga hermonthica (purple witchweed) is a parasitic plant that attaches to sorghum roots and can significantly reduce production."
+      }
+    },
+    {
+      "id": 60,
+      "topic": "sorghum_diseases",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What diseases commonly affect sorghum?"
+      },
+      "answers": {
+        "en": "Sorghum is affected by anthracnose (caused by the fungus Colletotrichum sublineolum) and by toxic ergot fungus, which attacks the grain and can harm both humans and livestock if consumed."
+      }
+    },
+    {
+      "id": 61,
+      "topic": "sorghum_grazing_toxicity_young",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Is it safe to let animals graze on young sorghum plants?"
+      },
+      "answers": {
+        "en": "Caution is needed — in early growth stages, some sorghum can contain levels of hydrogen cyanide and nitrates that are lethal to grazing animals."
+      }
+    },
+    {
+      "id": 62,
+      "topic": "sorghum_stress_toxicity",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Can drought or heat stress make sorghum dangerous to livestock?"
+      },
+      "answers": {
+        "en": "Yes, sorghum plants stressed by drought or heat can develop toxic levels of cyanide and nitrates even at later growth stages, posing a risk to grazing animals."
+      }
+    },
+    {
+      "id": 63,
+      "topic": "sorghum_grain_edibility",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Is sorghum grain safe to eat, and how is it prepared?"
+      },
+      "answers": {
+        "en": "Yes, sorghum grain is edible and nutritious — it can be eaten raw while young and milky, but must be boiled or ground into flour once mature."
+      }
+    },
+    {
+      "id": 64,
+      "topic": "sorghum_gluten_free",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Does sorghum contain gluten?"
+      },
+      "answers": {
+        "en": "No, sorghum does not contain gluten, making it suitable for gluten-free diets and usable in foods like porridge, flatbreads, and couscous."
+      }
+    },
+    {
+      "id": 65,
+      "topic": "sorghum_animal_feed_use",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "What is sorghum mainly used for as animal feed?"
+      },
+      "answers": {
+        "en": "Sorghum is used primarily as poultry feed, and also as cattle feed and in brewing."
+      }
+    },
+    {
+      "id": 66,
+      "topic": "sorghum_biofuel_use",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Can sorghum be used to produce fuel or energy?"
+      },
+      "answers": {
+        "en": "Yes, sorghum can be fermented into ethanol as a biofuel, has an energy ratio similar to sugarcane, and requires less nitrogen fertilizer than maize does for the same purpose."
+      }
+    },
+    {
+      "id": 67,
+      "topic": "sorghum_nigeria_dye_use",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Is sorghum used for anything besides food and feed in Nigeria?"
+      },
+      "answers": {
+        "en": "Yes, in Nigeria the pulverized red leaf-sheaths of sorghum have traditionally been used to dye leather."
+      }
+    },
+    {
+      "id": 68,
+      "topic": "sorghum_harvesting_drying",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "How is sorghum typically harvested and dried?"
+      },
+      "answers": {
+        "en": "Sorghum is commonly harvested with a combine and then dried in the open air, spread out to dry naturally before storage."
+      }
+    },
+    {
+      "id": 69,
+      "topic": "sorghum_origin_west_africa",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "Where did sorghum originate, and is it well-suited to West Africa?"
+      },
+      "answers": {
+        "en": "Sorghum was domesticated in Eastern Sudan and spread to West Africa roughly 3,000 years ago, and remains one of the staple cereal crops for poor and rural farming communities across the region today."
+      }
+    },
+    {
+      "id": 70,
+      "topic": "sorghum_cereal_ranking",
+      "source": "Wikipedia: Sorghum",
+      "questions": {
+        "en": "How important is sorghum compared to other cereal crops?"
+      },
+      "answers": {
+        "en": "Sorghum is the world's fifth most important cereal crop, after rice, wheat, maize, and barley."
+      }
+    },
+    {
+      "id": 71,
+      "topic": "millet_growing_conditions",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "What growing conditions is millet best suited for?"
+      },
+      "answers": {
+        "en": "Millet is highly tolerant of drought and other extreme weather, favored for its productivity and short growing season under hot, dry conditions, making it well suited to semi-arid regions."
+      }
+    },
+    {
+      "id": 72,
+      "topic": "millet_nigeria_production",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Is Nigeria a major millet producer?"
+      },
+      "answers": {
+        "en": "Yes, Nigeria is the world's fourth-largest millet producer, and millet is significant to food consumption across Niger, Mali, Senegal, Ethiopia, Nigeria, and Uganda."
+      }
+    },
+    {
+      "id": 73,
+      "topic": "millet_poor_soil_tolerance",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Does millet need good soil to grow, or can it survive poor soil?"
+      },
+      "answers": {
+        "en": "Millet is adapted to poor, dry, infertile soils and is more reliable under these conditions than most other grain crops."
+      }
+    },
+    {
+      "id": 74,
+      "topic": "millet_variety_improvement_yield",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Can improving millet varieties actually increase my yield significantly?"
+      },
+      "answers": {
+        "en": "Yes — the 'Okashana 1' variety, developed from a natural Burkina Faso millet, doubled yields where adopted and became the dominant variety in Namibia after being introduced there."
+      }
+    },
+    {
+      "id": 75,
+      "topic": "millet_fertilizer_irrigation_response",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Does millet respond well to fertilizer and irrigation?"
+      },
+      "answers": {
+        "en": "Yes, on a per-hectare basis, millet grain production can be 2 to 4 times higher with the use of irrigation and soil supplements, despite the crop's ability to survive on poor soils without them."
+      }
+    },
+    {
+      "id": 76,
+      "topic": "millet_insect_pests",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "What insect pests commonly damage millet?"
+      },
+      "answers": {
+        "en": "Millet is damaged by many insect pests including corn borers, stemborers, various moth caterpillars, millet midge, several fly species, aphids, thrips, beetles, and grasshoppers."
+      }
+    },
+    {
+      "id": 77,
+      "topic": "millet_diseases",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "What diseases should I watch for in millet?"
+      },
+      "answers": {
+        "en": "Serious millet diseases include anthracnose, blast, charcoal rot, downy mildew, ergot, grain mould, rust, and sheath rot, with bacterial and viral diseases generally being less serious threats."
+      }
+    },
+    {
+      "id": 78,
+      "topic": "millet_gluten_free",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Is millet safe to eat for people who can't eat gluten?"
+      },
+      "answers": {
+        "en": "Yes, millet is naturally gluten-free and can replace gluten-containing cereals for people with gluten-related conditions, though care is needed to avoid cross-contamination with gluten-containing grains during processing."
+      }
+    },
+    {
+      "id": 79,
+      "topic": "millet_animal_feed_vs_sorghum",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Is millet good animal feed compared to sorghum?"
+      },
+      "answers": {
+        "en": "Yes, animals such as lambs tend to gain weight faster on millet than on forage sorghum, and unlike some sorghum, millet does not contain toxic prussic acid."
+      }
+    },
+    {
+      "id": 80,
+      "topic": "millet_antinutrients_goitre",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Does relying heavily on millet as food have any health drawbacks?"
+      },
+      "answers": {
+        "en": "Millet-heavy diets may contribute to endemic goitre in rural Africa and Asia due to antinutrients in the grain, though these antinutrients can be reduced through processing methods like malting, milling, cooking, and fermentation."
+      }
+    },
+    {
+      "id": 81,
+      "topic": "millet_fertilizer_microdosing",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "What is fertilizer micro-dosing, and why is it used for millet?"
+      },
+      "answers": {
+        "en": "Fertilizer micro-dosing is applying a small quantity of mineral fertilizer (about one-third of the recommended rate) directly to the seed at planting or a few weeks after; it was developed to help smallholder Sahel farmers use limited, costly fertilizer more efficiently while still improving millet yield."
+      }
+    },
+    {
+      "id": 82,
+      "topic": "millet_manure_microdosing_combo",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Does combining manure with fertilizer micro-dosing improve millet yield more than fertilizer micro-dosing alone?"
+      },
+      "answers": {
+        "en": "Yes significantly — combining manure with fertilizer micro-dosing increased millet yields on average by 59%, 83%, and 113% at manure rates of 1000, 2000, and 3000 kg per hectare respectively, compared to fertilizer micro-dosing alone."
+      }
+    },
+    {
+      "id": 83,
+      "topic": "millet_manure_placement_method",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Does it matter how I apply manure to my millet field — spreading it versus placing it at the planting hill?"
+      },
+      "answers": {
+        "en": "Yes — placing manure directly at the planting hill (rather than broadcasting it across the field) increased total dry matter by an average of 23% and water use efficiency by 35% compared to broadcasting."
+      }
+    },
+    {
+      "id": 84,
+      "topic": "millet_manure_root_growth",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Does hill-placed manure help millet roots grow better?"
+      },
+      "answers": {
+        "en": "Yes, hill placement of manure increased total root length density by 66% at 25 cm from the hill center and 42% at 50 cm, compared to manure broadcasting."
+      }
+    },
+    {
+      "id": 85,
+      "topic": "millet_optimal_manure_fertilizer_combo",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "What is the most effective combination of manure and fertilizer for millet in low-input Sahel farming?"
+      },
+      "answers": {
+        "en": "A combination of 2000 kg per hectare of manure with 20 kg per hectare of DAP fertilizer, both hill-placed, was found most effective for increasing millet yield and using limited nutrients and water efficiently."
+      }
+    },
+    {
+      "id": 86,
+      "topic": "millet_fertilizer_cost_barrier",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Why do so few farmers in the Sahel use mineral fertilizer on millet?"
+      },
+      "answers": {
+        "en": "Mineral fertilizer use remains low among Niger farmers mainly because of its high cost, making it unattractive despite its potential to improve yields."
+      }
+    },
+    {
+      "id": 87,
+      "topic": "millet_manure_availability_challenge",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Is animal manure always easy to get enough of for fertilizing crops?"
+      },
+      "answers": {
+        "en": "No, availability of animal manure in sufficient quantity is a major challenge for smallholder farmers, which is part of why efficient placement methods (like hill placement) matter so much."
+      }
+    },
+    {
+      "id": 88,
+      "topic": "millet_climate_flowering_maturity",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "Does rising temperature affect how quickly millet flowers and matures?"
+      },
+      "answers": {
+        "en": "Yes, rising temperatures accelerate millet development, shortening the time to flowering and maturity, which reduces the grain-filling period and can lower yields — this effect is strongest under high-emission climate scenarios."
+      }
+    },
+    {
+      "id": 89,
+      "topic": "millet_rainfall_not_guarantee_yield",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "If rainfall increases in my area, does that guarantee better millet yields?"
+      },
+      "answers": {
+        "en": "Not necessarily — even where climate models project increased rainfall, millet yields can still decline overall because higher temperatures increase evaporative water loss and crop water demand, offsetting the benefit of more rain."
+      }
+    },
+    {
+      "id": 90,
+      "topic": "millet_nitrogen_climate_limitation",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "Will adding more nitrogen fertilizer help protect my millet yield from climate change effects?"
+      },
+      "answers": {
+        "en": "Not reliably — the negative impact of rising temperatures on millet yield was found to be more severe at higher nitrogen application rates, suggesting increased mineral fertilizer use alone is not a dependable climate adaptation strategy."
+      }
+    },
+    {
+      "id": 91,
+      "topic": "millet_optimal_temperature",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "What temperature does millet need for best flowering and growth?"
+      },
+      "answers": {
+        "en": "Optimal growth and development of pearl millet occurs around 33°C during the day and 28°C at night; temperatures rising well beyond these thresholds shorten the growing period and reduce grain yield."
+      }
+    },
+    {
+      "id": 92,
+      "topic": "millet_climate_adaptation_strategies",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "What farming strategies can help protect millet yields under climate change?"
+      },
+      "answers": {
+        "en": "Recommended strategies include adjusting sowing windows to match changing climate conditions, using climate-resilient variety selections, realigning fertilizer timing to match crop growth stages, and adding supplemental irrigation during critical growth stages where feasible."
+      }
+    },
+    {
+      "id": 93,
+      "topic": "millet_split_fertilizer_application",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "Is it better to apply all my fertilizer at once, or split it into multiple applications for millet?"
+      },
+      "answers": {
+        "en": "Splitting fertilizer applications and syncing them with the crop's growth stages (rather than one blanket application) is recommended, since shortened crop cycles under climate change narrow the window for effective nutrient uptake."
+      }
+    },
+    {
+      "id": 94,
+      "topic": "millet_manure_mineral_combo_climate",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "Is combining organic manure with mineral fertilizer better than using mineral fertilizer alone?"
+      },
+      "answers": {
+        "en": "Yes — integrated use of organic manure with reduced rates of mineral fertilizer has been shown to maintain or even increase yields under low rainfall and high-temperature conditions, while also improving soil structure and water retention."
+      }
+    },
+    {
+      "id": 95,
+      "topic": "millet_heat_yield_loss_percent",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "How much can extreme heat reduce millet or similar crop yields?"
+      },
+      "answers": {
+        "en": "A projected 4°C temperature rise was found to potentially cause up to a 28% reduction in yields for short-cycle crop varieties and up to 40% for long-cycle varieties."
+      }
+    },
+    {
+      "id": 96,
+      "topic": "millet_pest_disease_regional_variation",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Are millet pests and diseases the same everywhere, or does it depend on the region?"
+      },
+      "answers": {
+        "en": "Millets face a broad range of pests and diseases wherever they're grown, though specific pressures (like which viral or fungal diseases dominate) can vary by region and local conditions."
+      }
+    },
+    {
+      "id": 97,
+      "topic": "millet_drought_soil_nitrogen_response",
+      "source": "PLOS One (Mohamed et al., 2025)",
+      "questions": {
+        "en": "Can drought-stressed soil still respond well to nitrogen fertilizer?"
+      },
+      "answers": {
+        "en": "Not always — in low-input Sahel systems with nutrient-poor soils, the crop's response to nitrogen can be limited by other soil constraints like low organic matter and insufficient moisture, meaning nitrogen alone may not deliver expected yield gains."
+      }
+    },
+    {
+      "id": 98,
+      "topic": "millet_food_security_role",
+      "source": "Wikipedia: Millet",
+      "questions": {
+        "en": "Why is millet particularly important for food security in dry regions?"
+      },
+      "answers": {
+        "en": "Millet's drought tolerance and short growing season make it a critical staple where other cereals struggle, with some countries relying on it for over 65% of total cereal consumption."
+      }
+    },
+    {
+      "id": 99,
+      "topic": "millet_moisture_vs_nutrient_yield",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Does higher soil moisture always mean better millet yield?"
+      },
+      "answers": {
+        "en": "Not necessarily on its own — yield also strongly depends on nutrient availability and placement; the study found hill-placed manure improved water use efficiency specifically by helping roots access both water and nutrients more effectively together."
+      }
+    },
+    {
+      "id": 100,
+      "topic": "millet_yearly_fertilizer_response_variation",
+      "source": "Field Crops Research (Ibrahim et al., 2015)",
+      "questions": {
+        "en": "Should I expect the same yield response from fertilizer every year regardless of rainfall?"
+      },
+      "answers": {
+        "en": "No — yield response to fertilizer and manure can vary substantially year to year depending on rainfall amount and timing, since low or irregular rainfall during the reproductive stage significantly limits how much a crop benefits from soil fertility inputs."
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+load_backend: loaded RPC backend from C:\Users\mirac\OneDrive\Documents\agri-chatbot-adtc2026\_tools\llamacpp\ggml-rpc.dll
+load_backend: loaded CPU backend from C:\Users\mirac\OneDrive\Documents\agri-chatbot-adtc2026\_tools\llamacpp\ggml-cpu-haswell.dll
