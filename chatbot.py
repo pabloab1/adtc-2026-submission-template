@@ -108,20 +108,42 @@ class AgriChatbot:
         # LLM Prompt Construction
         context = "\n\n".join([f"[{c['crop']} - {c['section']}]: {c['text']}" for c in chunks])
         
-        # Explicit crop grounding in prompt
+        # Determine if this is a crop rotation query
+        is_rotation_query = any(word in query.lower() for word in ["rotation", "rotate", "cycle", "next crop", "after"])
+        
+        # Explicit crop grounding in prompt - STRENGTHENED TO THE MAX
         system_instruction = (
             "You are a Senior Agricultural Extension Officer in Nigeria. "
-            f"The user is asking about {detected_crop if detected_crop else 'agriculture'}. "
-            "Answer ONLY using the provided context. If the context is about a different crop than the user asked, "
-            "politely state you only have information on the crops in the context. "
-            "NEVER invent facts or mix crop details."
+            "STRICT GROUNDING RULES:\n"
+            f"1. The current focus is ONLY on the crop: {detected_crop.upper() if detected_crop else 'GENERAL AGRICULTURE'}.\n"
+            "2. You are FORBIDDEN from mentioning any other crop name unless it appears in the CONTEXT for a CROP ROTATION comparison.\n"
+            "3. If the user is NOT asking about 'Crop Rotation', you MUST NOT mention, compare, or retrieve facts about any unrelated crop.\n"
+            "4. Answer ONLY using the provided CONTEXT. If the context does not contain the answer for the SPECIFIC CROP asked, state that you do not have that information.\n"
+            "5. NEVER hallucinate or use external knowledge about other crops.\n"
+            "6. If you detect data for a different crop in the context that is unrelated to the user's query, IGNORE IT COMPLETELY."
         )
 
         user_prompt = f"CONTEXT:\n{context}\n\nQUESTION: {query}"
         
         # Only keep last 2 turns of history to prevent leakage/drift
+        # We scrub previous assistant answers from history if they mention other crops 
+        # to prevent the LLM from 'remembering' the wrong crop.
+        safe_history = []
+        for h in self.history[-4:]:
+            if h["role"] == "user":
+                safe_history.append(h)
+            else:
+                # If assistant turn, ensure it doesn't mention a different crop unless it's rotation
+                if not is_rotation_query and detected_crop:
+                    content = h["content"]
+                    # Simple heuristic: if the previous answer mentioned another crop, skip it to be safe
+                    other_crops = [c for c in CROPS if c != detected_crop]
+                    if any(c in content.lower() for c in other_crops):
+                        continue
+                safe_history.append(h)
+
         messages = [{"role": "system", "content": system_instruction}]
-        messages.extend(self.history[-4:])
+        messages.extend(safe_history)
         messages.append({"role": "user", "content": user_prompt})
 
         if stream:

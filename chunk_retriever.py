@@ -152,7 +152,21 @@ def retrieve(query: str, top_k: int = TOP_K, crop_filter: Optional[str] = None) 
     
     # Filter by crop if requested
     if crop_filter:
-        filter_mask = np.array([c.crop.lower() == crop_filter.lower() or c.crop.lower() == "farm tools" for c in chunks])
+        # Check if user is asking about rotation/intercropping which requires other crops
+        is_rotation = any(w in query.lower() for w in ["rotation", "rotate", "cycle", "next crop", "after", "intercrop"])
+        
+        if is_rotation:
+            # For rotation, allow the target crop OR the specific 'Crop Rotation' section of ANY crop
+            filter_mask = np.array([
+                c.crop.lower() == crop_filter.lower() or 
+                "rotation" in c.section.lower() or
+                c.crop.lower() == "farm tools"
+                for c in chunks
+            ])
+        else:
+            # Strict isolation: only the target crop and general tools
+            filter_mask = np.array([c.crop.lower() == crop_filter.lower() or c.crop.lower() == "farm tools" for c in chunks])
+            
         sims[~filter_mask] = -1.0
         
     ranked = np.argsort(-sims)[:top_k]
