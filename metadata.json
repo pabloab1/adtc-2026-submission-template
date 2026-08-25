@@ -1,13 +1,13 @@
 {
-  "team_id": "REPLACE_WITH_YOUR_ADTF_TEAM_ID",
+  "team_id": "farmmate-ng",
   "domain": "agriculture",
   "language_scope": ["en"],
   "african_alpha_claim": false,
   "budget_laptop_claim": true,
   "submitter": {
-    "name": "REPLACE_WITH_YOUR_NAME",
-    "email": "REPLACE_WITH_YOUR_EMAIL",
-    "github_handle": "REPLACE_WITH_YOUR_GITHUB_HANDLE"
+    "name": "Miraclemoses Abraham",
+    "email": "miraclemosesabraham1@gmail.com",
+    "github_handle": "pabloab1"
   },
   "cross_disciplinary_pairing": {
     "discipline": "agriculture",
@@ -17,11 +17,11 @@
   "test_prompts": [
     {
       "prompt_id": "tp_001",
-      "prompt": "How do I control Fall Armyworm in my maize farm?"
+      "prompt": "What is the recommended fertilizer application for cassava to ensure high yield?"
     },
     {
       "prompt_id": "tp_002",
-      "prompt": "When can I harvest cassava?"
+      "prompt": "How can I manage stem borer pests in my maize farm?"
     }
   ],
   "model": {

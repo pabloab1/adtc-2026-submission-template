@@ -1,55 +1,27 @@
 """
 Chunk retriever — primary retrieval engine.
-
-Knowledge base: crop `.docx` guides in dataset/ (Heading 1 = crop name,
-Heading 2 = sections: About, History, Planting, Harvest, Crop Rotation,
-Pests, Pest Control, Machines and Tools, Care).
-
-Single runtime, single dependency — llama.cpp for BOTH the chat model and
-the embeddings (ADTC 2026 offline rules):
-
-  - model/all-minilm-l6-v2-q8_0.gguf  — quantised all-MiniLM-L6-v2 (25 MB)
-    run through llama-cpp-python in embedding mode, the same runtime as
-    the Qwen chat model in rag_llm.py
-  - model/qwen2.5-1.5b-instruct-q4_k_m.gguf — the chat model
-
-  BUILD (dev-time, one-time + whenever dataset/ changes):
-    `python chunk_retriever.py build`
-    Ingests the docx guides, embeds every section chunk with the GGUF
-    MiniLM model, and writes the vectors to index/ (chunk_vectors.npy +
-    chunks.json). Needs: numpy, python-docx, llama-cpp-python
-    (download_model.sh pulls the .gguf files first). Never runs at chat time.
-
-  RUNTIME (chat time):
-    `from chunk_retriever import retrieve` — reads the pre-built index
-    and embeds only the incoming question with the same GGUF MiniLM model
-    through llama-cpp-python's embedding mode. Retrieve is a dot product
-    over the cached chunk vectors. Sub-second, no cloud calls, no network,
-    no torch, no sentence-transformers at runtime.
-
-Chunks below RETRIEVAL_MIN_SIMILARITY are dropped — that's the honest
-"not in the dataset" signal.
+Refactored for ADTC 2026: Safe scoring, crop filtering, and CPU-only offline execution.
 """
 
 import json
 import os
 import sys
+import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 import numpy as np
 
 BASE_DIR = Path(__file__).parent
-DATASET_DIR = BASE_DIR / "dataset"       # folder of per-crop .docx files
-INDEX_DIR = BASE_DIR / "index"           # pre-built vector store
-MODEL_DIR = BASE_DIR / "model"           # GGUF embedding + chat models
+DATASET_DIR = BASE_DIR / "dataset"
+INDEX_DIR = BASE_DIR / "index"
+MODEL_DIR = BASE_DIR / "model"
 EMBED_MODEL = MODEL_DIR / "all-minilm-l6-v2-q8_0.gguf"
 
-TOP_K = 3                              # chunks retrieved per question
-MAX_CHUNK_CHARS = 500                    # cap so small LLM context windows aren't blown
-RETRIEVAL_MIN_SIMILARITY = 0.35          # below this, treat as "not in the dataset"
-
+TOP_K = 5
+MAX_CHUNK_CHARS = 800
+RETRIEVAL_MIN_SIMILARITY = 0.35
 
 @dataclass
 class Chunk:
@@ -58,46 +30,28 @@ class Chunk:
     text: str
     source: str
 
-
-# ---------------------------------------------------------------------------
-# Embedding backend — llama.cpp in embedding mode (all llama.cpp, all offline)
-# ---------------------------------------------------------------------------
-
 _embedder = None
 
-
 def _get_embedder():
-    """Lazily load the GGUF MiniLM model through llama-cpp-python with
-    embedding=True so it only computes sentence embeddings (no chat graph)."""
     global _embedder
     if _embedder is None:
         if not EMBED_MODEL.exists():
-            raise RuntimeError(
-                f"Embedding model missing at {EMBED_MODEL} — "
-                "run download_model.sh (or add all-minilm-l6-v2-q8_0.gguf "
-                "to model/) then `python chunk_retriever.py build` once."
-            )
+            raise RuntimeError(f"Embedding model missing at {EMBED_MODEL}")
         try:
             from llama_cpp import Llama
-        except ImportError as e:
-            raise ImportError(
-                "llama-cpp-python is required at runtime (same runtime as the "
-                "chat model). Setup: python -m pip install -r requirements.txt"
-            ) from e
+        except ImportError:
+            raise ImportError("llama-cpp-python is required.")
         _embedder = Llama(
             model_path=str(EMBED_MODEL),
             embedding=True,
-            n_gpu_layers=0,   # keep everything on CPU / within the 8 GB budget
+            n_gpu_layers=0,
             n_ctx=512,
-            n_threads=4, # 4 threads is faster for embedding even on 2-core CPUs
+            n_threads=4,
             verbose=False,
         )
     return _embedder
 
-
 def _embed(texts: List[str]) -> np.ndarray:
-    """Embed a batch of strings with the GGUF MiniLM model, L2-normalised
-    so a dot product equals cosine similarity."""
     e = _get_embedder()
     out = e.create_embedding(texts)
     data = out["data"]
@@ -105,16 +59,9 @@ def _embed(texts: List[str]) -> np.ndarray:
     norms = np.linalg.norm(vectors, axis=1, keepdims=True)
     return vectors / np.maximum(norms, 1e-9)
 
-
-# ---------------------------------------------------------------------------
-# Build phase (dev-time) — needs llama-cpp-python + the GGUF model in model/
-# ---------------------------------------------------------------------------
-
 def load_crop_docx(path: str) -> List[Chunk]:
-    """Heading 2 sections under the Heading 1 crop name -> one chunk each."""
-    from docx import Document as DocxDocument  # lazy: only at build time
-
-    doc = DocxDocument(path)
+    from docx import Document
+    doc = Document(path)
     chunks: List[Chunk] = []
     crop_name = Path(path).stem
     current_section: Optional[str] = None
@@ -131,12 +78,10 @@ def load_crop_docx(path: str) -> List[Chunk]:
                     source=f"{Path(path).name} — compiled agricultural reference",
                 ))
 
-    # Ingest paragraphs
     for para in doc.paragraphs:
         style = (para.style.name if para.style else "").lower()
         text = para.text.strip()
-        if not text:
-            continue
+        if not text: continue
         
         if style == "heading 1":
             flush()
@@ -153,128 +98,82 @@ def load_crop_docx(path: str) -> List[Chunk]:
             buffer.append(text)
     flush()
 
-    # Ingest tables (especially for Farm Tools)
     for table in doc.tables:
-        # Check if this is a tool table (header contains "Tool")
         header = [cell.text.strip() for cell in table.rows[0].cells]
         is_tool_table = any("Tool" in h for h in header)
-        
         if is_tool_table:
-            # For tool tables, each row (except header) is a chunk
             for row in table.rows[1:]:
                 row_text = [f"{header[i]}: {row.cells[i].text.strip()}" for i in range(len(header)) if i < len(row.cells)]
                 text = "\n".join(row_text)
-                # Extract the tool name for the section field
                 tool_name = row.cells[0].text.strip().split("(")[0].strip()
-                chunks.append(Chunk(
-                    crop=crop_name,
-                    section=tool_name,
-                    text=text,
-                    source=f"{Path(path).name} — compiled agricultural reference",
-                ))
+                chunks.append(Chunk(crop=crop_name, section=tool_name, text=text, source=f"{Path(path).name} — compiled agricultural reference"))
         else:
-            # For other tables, keep as one chunk
-            table_text = []
-            for row in table.rows:
-                row_text = [cell.text.strip() for cell in row.cells if cell.text.strip()]
-                if row_text:
-                    table_text.append(" | ".join(row_text))
+            table_text = [" | ".join([c.text.strip() for c in r.cells if c.text.strip()]) for r in table.rows]
+            table_text = [t for t in table_text if t]
             if table_text:
-                chunks.append(Chunk(
-                    crop=crop_name,
-                    section=current_section or "Data Table",
-                    text="\n".join(table_text),
-                    source=f"{Path(path).name} — compiled agricultural reference",
-                ))
-
+                chunks.append(Chunk(crop=crop_name, section=current_section or "Data Table", text="\n".join(table_text), source=f"{Path(path).name} — compiled agricultural reference"))
     return chunks
 
-
 def build_index():
-    """Dev-time: ingest dataset/*.docx and embed all chunks to index/."""
     import glob
-
     os.makedirs(INDEX_DIR, exist_ok=True)
-    all_chunks: List[Chunk] = []
+    all_chunks = []
     for path in sorted(glob.glob(os.path.join(DATASET_DIR, "*.docx"))):
         all_chunks.extend(load_crop_docx(path))
-
     if not all_chunks:
-        raise RuntimeError(
-            f"No chunks found — check {DATASET_DIR}/ has your crop .docx files "
-            "(Rice.docx, Maize.docx, ...). Add more guides and re-run build."
-        )
-
-    texts = [f"{c.crop} — {c.section}: {c.text}" for c in all_chunks]
+        raise RuntimeError("No chunks found.")
+    texts = [f"{c.crop} {c.section} {c.text}" for c in all_chunks]
     vectors = _embed(texts)
-
     np.save(os.path.join(INDEX_DIR, "chunk_vectors.npy"), vectors)
     with open(os.path.join(INDEX_DIR, "chunks.json"), "w", encoding="utf-8") as f:
-        json.dump(
-            [{"crop": c.crop, "section": c.section, "text": c.text, "source": c.source}
-             for c in all_chunks],
-            f, ensure_ascii=False,
-        )
-    print(f"Indexed {len(all_chunks)} chunks from {DATASET_DIR}/")
-    return vectors, all_chunks
-
-
-# ---------------------------------------------------------------------------
-# Runtime phase — pre-built index + llama.cpp embedding (no torch)
-# ---------------------------------------------------------------------------
+        json.dump([{"crop": c.crop, "section": c.section, "text": c.text, "source": c.source} for c in all_chunks], f, ensure_ascii=False)
+    print(f"Indexed {len(all_chunks)} chunks.")
 
 _cached_index = None
 
 def load_index():
-    """Load index from disk, caching in memory to avoid redundant IO."""
     global _cached_index
-    if _cached_index is not None:
-        return _cached_index
-        
-    vec_path = os.path.join(INDEX_DIR, "chunk_vectors.npy")
-    chunk_path = os.path.join(INDEX_DIR, "chunks.json")
-    if not (os.path.exists(vec_path) and os.path.exists(chunk_path)):
-        return build_index()
-        
+    if _cached_index is not None: return _cached_index
+    vec_path, chunk_path = INDEX_DIR / "chunk_vectors.npy", INDEX_DIR / "chunks.json"
+    if not (vec_path.exists() and chunk_path.exists()): return build_index()
     vectors = np.load(vec_path, allow_pickle=False)
     with open(chunk_path, encoding="utf-8") as f:
         chunks = [Chunk(**c) for c in json.load(f)]
-    
     _cached_index = (vectors, chunks)
     return _cached_index
 
-
-def retrieve(query: str, top_k: int = TOP_K) -> List[dict]:
+def retrieve(query: str, top_k: int = TOP_K, crop_filter: Optional[str] = None) -> List[Dict[str, Any]]:
     """
-    Runtime retrieval over the pre-built index.
-    Returns up to top_k matching chunks as
-    {crop, section, text, source, score} sorted by descending similarity.
-    Chunks below RETRIEVAL_MIN_SIMILARITY are dropped — that's the
-    "not in the dataset" signal.
+    Retrieves chunks with optional hard crop filtering and honest cosine similarity.
     """
     vectors, chunks = load_index()
     q_vec = _embed([query])[0]
-    sims = vectors @ q_vec  # normalised vectors: dot product == cosine similarity
+    sims = vectors @ q_vec
+    
+    # Filter by crop if requested
+    if crop_filter:
+        filter_mask = np.array([c.crop.lower() == crop_filter.lower() or c.crop.lower() == "farm tools" for c in chunks])
+        sims[~filter_mask] = -1.0
+        
     ranked = np.argsort(-sims)[:top_k]
-    results = [chunks[int(i)] for i in ranked if sims[int(i)] >= RETRIEVAL_MIN_SIMILARITY]
-    return [
-        {
+    results = []
+    for i in ranked:
+        score = float(sims[i])
+        if score < RETRIEVAL_MIN_SIMILARITY: continue
+        c = chunks[i]
+        results.append({
             "crop": c.crop,
             "section": c.section,
             "text": c.text[:MAX_CHUNK_CHARS],
             "source": c.source,
-            "score": round(float(sims[ranked[idx]]), 3),
-        }
-        for idx, c in enumerate(results)
-    ]
-
+            "score": round(score, 3)
+        })
+    return results
 
 if __name__ == "__main__":
-    cmd = sys.argv[1] if len(sys.argv) > 1 else "build"
-    if cmd == "build":
+    if len(sys.argv) > 1 and sys.argv[1] == "build":
         build_index()
     else:
-        question = " ".join(sys.argv[1:])
-        for m in retrieve(question):
-            print(f"[{m['crop']} — {m['section']}] score={m['score']}")
-            print(f"  {m['text'][:200]}...\n")
+        q = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "how to store beans"
+        for r in retrieve(q):
+            print(f"[{r['crop']} - {r['section']}] (Score: {r['score']})\n{r['text'][:150]}...\n")
